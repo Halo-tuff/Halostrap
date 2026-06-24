@@ -5,8 +5,7 @@
 > halostrap is a community-driven fork. We are actively maintaining this to bring you the best performance tweaks.
 
 <p align="center">
-    <img src="https://github.com/limgaboy71-creator/halostrap/raw/main/Images/halostrap-full-dark.png#gh-dark-mode-only" width="380">
-    <img src="https://github.com/limgaboy71-creator/halostrap/raw/main/Images/halostrap-full-light.png#gh-light-mode-only" width="380">
+    <img src="https://github.com/Halo-tuff/halostrap/raw/main/Images/Gemini_Generated_Image_4i1pn14i1pn14i1p" width="380">
 </p>
 
 <div align="center">
