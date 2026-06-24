@@ -1,5 +1,5 @@
 > [!CAUTION]
-> The only official place to download halostrap is this GitHub repository. Any other websites or users offering downloads are not affiliated with us because we dont have a website YET and halostrap no[...]
+> The only official place to download halostrap is this GitHub repository. Any other websites or users offering downloads are not affiliated with us because we dont have a website YET and halostrap not out yet.
 
 > [!IMPORTANT]
 > halostrap is a community-driven fork. We are actively maintaining this to bring you the best performance tweaks.
