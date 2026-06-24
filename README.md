@@ -1,5 +1,5 @@
 > [!CAUTION]
-> The only official place to download halostrap is this GitHub repository. Any other websites or users offering downloads are not affiliated with us because we dont have a website YET and halostrap not out yet.
+> The only official place to download halostrap is this GitHub repository. Any other websites or users offering downloads are not affiliated with us because we dont have a website YET and halostrap is community driven
 
 > [!IMPORTANT]
 > halostrap is a community-driven fork. We are actively maintaining this to bring you the best performance tweaks.
@@ -26,7 +26,8 @@ Running into a problem? [Submit an issue](https://github.com/Halo-tuff/Halostrap
 
 ## Features
 
-- **Ultimate Performance Tweaks**: Apply every officially whitelisted FFlag to unlock your FPS and reduce network latency.
+- **Performance Turbo Preset**: Apply whitelisted FFlags with one click to maximize performance boost - includes texture optimization, grass distance reduction, and geometry LOD tweaks.
+- **Ultimate Performance Tweaks**: Apply officially whitelisted FFlags to unlock your FPS and reduce network latency.
 - **Advanced Mod Loader**: Easily swap textures, sounds, and cursors with a simple UI.
 - Hassle-free Discord Rich Presence.
 - See where your server is geographically located.
@@ -38,6 +39,25 @@ Download the [latest release](https://github.com/Halo-tuff/Halostrap/releases/la
 You will need the [.NET 6 Desktop Runtime](https://aka.ms/dotnet-core-applaunch?missing_runtime=true&arch=x64&rid=win11-x64&apphost_version=6.0.36&gui=true). 
 
 > **Smartscreen warning?** Just click "More info" -> "Run anyway". It's safe because it's new, not because it's malicious.
+
+## Performance Mode Settings
+
+### Default
+No FFlags applied. Standard Roblox experience.
+
+### Balanced
+- D3D11 Graphics Rendering
+- Low-quality mode enabled
+
+### Performance Turbo ⚡
+- D3D11 Graphics Rendering
+- Texture Quality: Level 0 (Lowest)
+- MSAA: Disabled (1x)
+- Geometry LOD Distance: 250000
+- Grass: Disabled
+- FRM Quality: Level 1 (Low)
+
+> **Note:** All settings use officially whitelisted FFlags approved by Roblox. See [FFlag Allowlist](https://github.com/LeventGameing/allowlist) for more details.
 
 ## Community
 Join our Discord server for support and updates: **[https://discord.gg/4d8gVXmXnT](https://discord.gg/4d8gVXmXnT)**

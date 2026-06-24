@@ -1,4 +1,4 @@
-﻿using Bloxstrap.Enums.FlagPresets;
+using Bloxstrap.Enums.FlagPresets;
 
 namespace Bloxstrap
 {
@@ -24,6 +24,16 @@ namespace Bloxstrap
 
             { "Rendering.TextureQuality.OverrideEnabled", "DFFlagTextureQualityOverrideEnabled" },
             { "Rendering.TextureQuality.Level", "DFIntTextureQualityOverride" },
+
+            { "Performance.GraphicsMode", "FFlagDebugGraphicsPreferD3D11" },
+            { "Performance.FRMQualityOverride", "DFIntDebugFRMQualityLevelOverride" },
+            { "Performance.MinGrassDistance", "FIntFRMMinGrassDistance" },
+            { "Performance.MaxGrassDistance", "FIntFRMMaxGrassDistance" },
+            { "Performance.GrassMotionFactor", "FIntGrassMovementReducedMotionFactor" },
+            { "Performance.CSGDistance", "DFIntCSGLevelOfDetailSwitchingDistance" },
+            { "Performance.CSGDistanceL12", "DFIntCSGLevelOfDetailSwitchingDistanceL12" },
+            { "Performance.CSGDistanceL23", "DFIntCSGLevelOfDetailSwitchingDistanceL23" },
+            { "Performance.CSGDistanceL34", "DFIntCSGLevelOfDetailSwitchingDistanceL34" },
         };
 
         public static IReadOnlyDictionary<MSAAMode, string?> MSAAModes => new Dictionary<MSAAMode, string?>
@@ -41,6 +51,40 @@ namespace Bloxstrap
             { TextureQuality.Level1, "1" },
             { TextureQuality.Level2, "2" },
             { TextureQuality.Level3, "3" },
+        };
+
+        public static IReadOnlyDictionary<PerformanceMode, Dictionary<string, object>> PerformancePresets => new Dictionary<PerformanceMode, Dictionary<string, object>>
+        {
+            {
+                PerformanceMode.Default,
+                new Dictionary<string, object>()
+            },
+            {
+                PerformanceMode.Balanced,
+                new Dictionary<string, object>
+                {
+                    { "FFlagDebugGraphicsPreferD3D11", "true" },
+                    { "DFIntDebugFRMQualityLevelOverride", "1" },
+                }
+            },
+            {
+                PerformanceMode.PerformanceTurbo,
+                new Dictionary<string, object>
+                {
+                    { "FFlagDebugGraphicsPreferD3D11", "true" },
+                    { "DFFlagTextureQualityOverrideEnabled", "true" },
+                    { "DFIntTextureQualityOverride", "0" },
+                    { "FIntDebugForceMSAASamples", "1" },
+                    { "DFIntDebugFRMQualityLevelOverride", "1" },
+                    { "FIntFRMMinGrassDistance", "0" },
+                    { "FIntFRMMaxGrassDistance", "0" },
+                    { "FIntGrassMovementReducedMotionFactor", "0" },
+                    { "DFIntCSGLevelOfDetailSwitchingDistance", "250000" },
+                    { "DFIntCSGLevelOfDetailSwitchingDistanceL12", "250000" },
+                    { "DFIntCSGLevelOfDetailSwitchingDistanceL23", "250000" },
+                    { "DFIntCSGLevelOfDetailSwitchingDistanceL34", "250000" },
+                }
+            }
         };
 
         // all fflags are stored as strings
@@ -99,6 +143,50 @@ namespace Bloxstrap
                 else
                     SetValue(pair.Value, null);
             }
+        }
+
+        public void SetPerformanceMode(PerformanceMode mode)
+        {
+            if (mode == PerformanceMode.Default)
+            {
+                // Clear all performance flags
+                foreach (var flag in PerformancePresets[PerformanceMode.PerformanceTurbo].Keys)
+                    SetValue(flag, null);
+            }
+            else if (PerformancePresets.TryGetValue(mode, out var flags))
+            {
+                foreach (var pair in flags)
+                    SetValue(pair.Key, pair.Value);
+            }
+        }
+
+        public PerformanceMode GetPerformanceMode()
+        {
+            var turboPreset = PerformancePresets[PerformanceMode.PerformanceTurbo];
+            int matchCount = 0;
+
+            foreach (var flag in turboPreset)
+            {
+                if (GetValue(flag.Key) == flag.Value.ToString())
+                    matchCount++;
+            }
+
+            if (matchCount == turboPreset.Count)
+                return PerformanceMode.PerformanceTurbo;
+
+            var balancedPreset = PerformancePresets[PerformanceMode.Balanced];
+            matchCount = 0;
+
+            foreach (var flag in balancedPreset)
+            {
+                if (GetValue(flag.Key) == flag.Value.ToString())
+                    matchCount++;
+            }
+
+            if (matchCount == balancedPreset.Count)
+                return PerformanceMode.Balanced;
+
+            return PerformanceMode.Default;
         }
 
         public string? GetPreset(string name)

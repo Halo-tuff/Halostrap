@@ -1,4 +1,4 @@
-﻿using System.Windows;
+using System.Windows;
 using System.Windows.Input;
 
 using CommunityToolkit.Mvvm.Input;
@@ -25,6 +25,18 @@ namespace Bloxstrap.UI.ViewModels.Settings
         {
             get => App.Settings.Prop.UseFastFlagManager;
             set => App.Settings.Prop.UseFastFlagManager = value;
+        }
+
+        public IReadOnlyDictionary<PerformanceMode, string?> PerformanceModes => FastFlagManager.PerformancePresets.Keys.ToDictionary(k => k, v => (string?)null);
+
+        public PerformanceMode SelectedPerformanceMode
+        {
+            get => App.FastFlags.GetPerformanceMode();
+            set
+            {
+                App.FastFlags.SetPerformanceMode(value);
+                OnPropertyChanged(nameof(SelectedPerformanceMode));
+            }
         }
 
         public IReadOnlyDictionary<MSAAMode, string?> MSAALevels => FastFlagManager.MSAAModes;
