@@ -26,12 +26,12 @@ jobs:
       run: dotnet build -c Release --no-restore
     
     - name: Publish
-      run: dotnet publish Bloxstrap/Bloxstrap.csproj -c Release -o publish
+      run: dotnet publish -c Release -o publish
     
     - name: Create Release
       uses: softprops/action-gh-release@v1
       with:
-        files: publish/Bloxstrap.exe
+        files: publish/Halostrap.exe
         draft: false
         prerelease: false
       env:
